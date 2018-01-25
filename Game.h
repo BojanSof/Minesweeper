@@ -13,9 +13,9 @@ public:
     void Run();
     void Test();
 private:
-    void hasWon();
     void checkEvents();
-
+    void checkWinState();
+    
     bool end;
     unsigned int height;
     unsigned int width;

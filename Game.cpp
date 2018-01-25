@@ -42,6 +42,19 @@ void Minesweeper::Game::checkEvents(){
     }
 }
 
+void Minesweeper::Game::checkWinState(){
+    if(!end){
+        for(unsigned int i = 1; i <= grid.getRows(); i++){
+            for(unsigned int j = 1; j <= grid.getCols(); j++){
+                if(grid.grid[i][j].value == 9 && grid.sgrid[i][j] == 11) continue;
+                if(grid.grid[i][j].value != grid.sgrid[i][j]) return;
+            }
+        }
+        std::cout << "You won!" << std::endl;
+        end = true;
+    }
+}
+
 void Minesweeper::Game::Run(){
     while(window.isOpen()){
         checkEvents();
@@ -56,6 +69,7 @@ void Minesweeper::Game::Run(){
             }
         }
         window.display();
+        checkWinState();
     }
 }
 
