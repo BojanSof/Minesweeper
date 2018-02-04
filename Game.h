@@ -9,6 +9,7 @@ namespace Minesweeper{
 class Game{
 public:
     Game();
+    Game(unsigned int rows, unsigned int colons, unsigned int mines);
     ~Game();
     void Run();
     void Test();
@@ -23,6 +24,8 @@ private:
     sf::RenderWindow window;
     sf::Texture tiles;
     sf::Sprite sprite;
+    sf::Font font;
+    sf::Text text;
 };
 
 }

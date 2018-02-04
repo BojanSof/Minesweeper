@@ -4,6 +4,19 @@
 Minesweeper::Game::Game() : end(false), height(288), width(288), grid(), window(sf::VideoMode(width, height), "Minesweeper", sf::Style::Close){
     tiles.loadFromFile("images/tiles.png");
     sprite.setTexture(tiles);
+    font.loadFromFile("fonts/arial.ttf");
+    text.setFont(font);
+    text.setColor(sf::Color::White);
+    text.setCharacterSize(48);
+}
+
+Minesweeper::Game::Game(unsigned int r, unsigned int c, unsigned int m) : end(false), height(c*32), width(r*32), grid(r,c,m), window(sf::VideoMode(width, height), "Minesweeper", sf::Style::Close){
+    tiles.loadFromFile("images/tiles.png");
+    sprite.setTexture(tiles);
+    font.loadFromFile("fonts/arial.ttf");
+    text.setFont(font);
+    text.setColor(sf::Color::White);
+    text.setCharacterSize(48);
 }
 
 Minesweeper::Game::~Game() {}
@@ -27,6 +40,10 @@ void Minesweeper::Game::checkEvents(){
                     else if(grid.grid[x][y].mine){
                         std::cout << "You lost!" << std::endl;
                         grid.showGrid();
+                        text.setString("You Lost!");
+                        sf::FloatRect textRect = text.getLocalBounds();
+                        text.setOrigin(textRect.left + textRect.width/2.0f, textRect.top  + textRect.height/2.0f);
+                        text.setPosition(sf::Vector2f(width/2.0f,height/2.0f));
                         end = true;
                     }
                     else if(grid.sgrid[x][y] != 10) {/*do nothing*/}
@@ -51,6 +68,10 @@ void Minesweeper::Game::checkWinState(){
             }
         }
         std::cout << "You won!" << std::endl;
+        text.setString("You Won!");
+        sf::FloatRect textRect = text.getLocalBounds();
+        text.setOrigin(textRect.left + textRect.width/2.0f, textRect.top  + textRect.height/2.0f);
+        text.setPosition(sf::Vector2f(width/2.0f,height/2.0f));
         end = true;
     }
 }
@@ -68,6 +89,7 @@ void Minesweeper::Game::Run(){
                 window.draw(sprite);
             }
         }
+        window.draw(text);
         window.display();
         checkWinState();
     }
