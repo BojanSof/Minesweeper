@@ -2,7 +2,7 @@
 
 Minesweeper game made in C++ using SFML
 
-![Minesweeper](https://github.com/BojanSof/Minesweeper/blob/master/images/Minesweeper_001.png)
+![Minesweeper](images/Minesweeper_001.png)
 
 Managed using CMake and CPM.
 Run the executable from `build/minesweeper`, i.e. `cd build/minesweeper && Debug/minesweeper`.
